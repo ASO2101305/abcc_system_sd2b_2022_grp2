@@ -1,6 +1,6 @@
 <?php 
     class DBManager{
-        private function dbConnect(){
+        public static function dbConnect(){
             $pdo = new PDO('mysql:host=mysql209.phy.lolipop.lan;dbname=LAA1418782-kaihatsu;charset=utf8','LAA1418782','Pass0629');
             return $pdo;
         }
