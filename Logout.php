@@ -1,5 +1,4 @@
 <?php
-    session_start();
     require_once "sessioncheck.php";
 
     $_SESSION = array();
