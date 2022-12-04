@@ -6,6 +6,7 @@
     $userData = $dbm->checkLoginByMailAndPass($_POST['mail'],$_POST['pass']);
     foreach($userData as $row){
         $_SESSION['mailaddress'] = $row['mail_address'];
+        $_SESSION['pass'] = $row['customer_pass'];
         header('Location: list.php');
     }
     if(count($userData)==0){
