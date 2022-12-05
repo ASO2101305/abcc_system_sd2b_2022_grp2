@@ -7,7 +7,7 @@
     foreach($userData as $row){
         $_SESSION['mailaddress'] = $row['mail_address'];
         $_SESSION['pass'] = $row['customer_pass'];
-        header('Location: list.php');
+        header('Location: ProductList.php');
     }
     if(count($userData)==0){
         header('Location:login.php');
