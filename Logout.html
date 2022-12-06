@@ -1,3 +1,11 @@
+<?php
+    require_once "php/sessioncheck.php";
+
+    $_SESSION = array();
+    session_destroy();
+?>
+
+
 <!DOCTYPE html>
 <html lang="ja">
     <head>
@@ -9,8 +17,12 @@
         <link rel="stylesheet" href="./css/pcStyle(kari).css" type="text/css">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 
+        <titel>ログアウト</title>
     </head>
     <body>
-     <img src="./img/クルトガ.jpg">
+        <h1>
+            <font size='5'>ログアウトしました</font>
+        </h1>
+        <p><a href='login.php'>ログインページに戻る</p>
     </body>
-</html>
+</html

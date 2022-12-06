@@ -1,18 +1,41 @@
-a {
+.menu-href{
     text-decoration: none;
+    color: black;
+}
+
+li{
+    list-style: none;
+    float: left;
+    font-size: 18px;
 }
 
 .header-menu {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     padding: 8px;
     margin: 0;
-    background: #eee;
+    background: lightblue;
+}
+.menu-item1 {
+    position: relative;
+    left:5px;
+} */
+
+.menu-item2 {
+    width: 100;
+}
+input.hoge {   
+    width: 100%;    
+    position: relative;
+    left: 50px;
 }
 
-.menu-item {
-    padding-inline: 40px;
-    font-size: 18px;
-    list-style: none;
+.menu-item3 {
+    position: relative;
+    left:50px;
+}
+
+.menu-item4 {
+
 }

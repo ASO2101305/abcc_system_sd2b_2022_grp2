@@ -5,10 +5,14 @@
     $dbm = new DBManager();
     $userData = $dbm->checkLoginByMailAndPass($_POST['mail'],$_POST['pass']);
     foreach($userData as $row){
-        $_SESSION['mailaddress'] = $row['mail_address'];
-        header('Location: list.php');
+        $_SESSION['id'] = $row['client_id'];
+        $_SESSION['mailaddress'] = $row['mailaddress'];
+        $_SESSION['pass'] = $row['client_password'];
+        $_SESSION['name'] = $row['client_name'];
+
+        header('Location: ProductList.html');
     }
     if(count($userData)==0){
-        header('Location:login.php');
+        header('Location:login.html');
     }
 ?>
