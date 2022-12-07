@@ -1,6 +1,6 @@
 <?php
 require_once 'SearchProduct.php';
-$pdo = $dbmng->dbConnect();
+$pdo = new search_result();
 $items = $pdo -> search($_POST['pdcname']);
 ?>
 <!DOCTYPE html>
@@ -10,39 +10,20 @@ $items = $pdo -> search($_POST['pdcname']);
         <meta name="viewport" content="width=device-width,initial-scale=1.0" />
         <link rel="stylesheet" href="./css/pcStyle.css" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
         <meta name="viewport" content="width=device-width, initial-scale=1" />
     </head>
     <body>
         <div>
-            <form action="SearchProduct.php" method="post">
-                <ul class="header-menu">
-                    <li class="menu-item">
-                        <a href=./ProductList.html><p>Work<br>buddy</p></a>
-                    </li>
-                    <li class="menu-item">
-                        <input type="text" name="pdtname">
-                    </li>
-                    <li class="menu-item">
-                        <input type="submit" value="探す">
-                    </li>
-                    <li class="menu-item">
-                        <input type="submit" value="ログアウト">
-                    </li>
-                </ul>
-            </form>
+            <?php
+                require 'Navmodel.html';
+            ?>
         </div>
         <div>
             <label class="model-box">
                 <?php 
                     foreach($items as $i){
-                ?>
-                <div class="container">
-                    <div class="item-src" src=<?= $i->source; ?>></div>
-                    <div class="item-name"><?= $i->product_name; ?></div>
-                    <div class="item-detail"><?= $i->function_detail; ?></div>
-                    <div class="item-price"><?= $i->product_price; ?></div>
-                </div>
-                <?php
+                        require 'Cardbox.html';
                     }
                 ?>
             </label>
