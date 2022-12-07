@@ -15,11 +15,52 @@
             $ps->execute();
             $userList = $ps->fetchAll();
             foreach($userList as $row){
-                if(password_verify($pass, $row['customer_pass']) == true){
+                if($pass == $row['customer_pass']){
                     $ret = $userList;
                 }
             }
             return $ret;
+        }
+
+        public function PdcList($pdo){
+            $sql = "SELECT * FROM shohin";
+            $selectdata = $pdo->query($sql);
+            return $selectdata;
+        }
+
+        //注文履歴入れるやつ
+        public function InsertHistory($client_id,$product_id,$maker_id,$num){
+            $pdo = this->dbConnect();
+            $sql = "INSERT INTO order_log(order_id,client_id,product_id,maker_id,order_date,order_num)
+            VALUES(?,?,?,?,?,?)";
+            $ps = $pdo->prepare($sql);
+            $dayStr = date("Y/m/d");
+            //件数を下のクラスから持ってくる
+            $ps->bindValue(1,MAX(order_id)+1,PARAM_INT);//order_idを1から順に入れる方法がわからん
+            $ps->bindValue(2,$client_id,PARAM_INT);
+            $ps->bindValue(3,$product_id,PARAM_INT);
+            $ps->bindValue(4,$maker_id,PARAM_INT);
+            $ps->bindValue(5,$dayStr,PARAM_STR);
+            $ps->bindValue(6,$num,PARAM_INT);
+            $ps->execute();
+        }
+
+        public function DBCount(){
+            $pdo = this->dbConnect();
+            $sql = "SELECT * FROM order_log";
+            $sth = $pdo => query($sql);
+            $count = $sth -> rowCount();
+            return $count;
+        }
+
+        public function getOrderHistory($client_id){
+            $pdo = $this->dbConnect();
+            $sql = "SELECT i.product_name, i.product_price, i.source FROM order_log AS o LEFT OUTER JOIN product AS i ON o.product_id = i.product_id WHERE o.order_id = ?";
+            $ps = $pdo->prepare($sql);
+            $ps->bindValue(1,$client_id,PDO::PARAM_INT);
+            $ps->execute();
+            $searchArray = $ps->fetchAll();
+            return $searchArray;
         }
     }
 ?>
