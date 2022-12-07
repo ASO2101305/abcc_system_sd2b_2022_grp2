@@ -4,7 +4,7 @@
             require_once "sessioncheck.php";
 
             $search_box = $_POST['?????']; //検索ボックスに入力された文字
-            $sql = "SELECT * FROM shohin WHERE shohin_name LIKE '%$search_box%'";
+            $sql = "SELECT * FROM Product WHERE product_name LIKE '%$search_box%'";
             $result = $mysqli -> query($sql);
 
             if(!$result) {
