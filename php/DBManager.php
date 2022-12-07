@@ -53,14 +53,5 @@
             return $count;
         }
 
-        public function getOrderHistory($client_id){
-            $pdo = $this->dbConnect();
-            $sql = "SELECT i.product_name, i.product_price, i.source FROM order_log AS o LEFT OUTER JOIN product AS i ON o.product_id = i.product_id WHERE o.order_id = ?";
-            $ps = $pdo->prepare($sql);
-            $ps->bindValue(1,$client_id,PDO::PARAM_INT);
-            $ps->execute();
-            $searchArray = $ps->fetchAll();
-            return $searchArray;
-        }
     }
 ?>
