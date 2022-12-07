@@ -1,5 +1,9 @@
 <?php 
+    require_once "sessioncheck.php";
     include 'Cart.php';
+    require_once 'DBManager.php';
+    $dbmng = new DBManager();
+    $dbmng->InsertHistory($_SESSION['id'],$id,$maker_id,date("Y/m/d"),$count);
 
     $goukei = 0;
     unset($_SESSION['products']);
