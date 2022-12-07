@@ -1,0 +1,19 @@
+<div class="container-fluid">
+    <div class="row m-2">
+        <div class="card col-3 m-2" style="width:18rem;">
+            <img src="<?= $i->source; ?>" class="card-img-top">
+            <div class="card-body">
+                <h5 class="item_name"><?= $i->product_name; ?></h5>
+            </div>
+            <div class="item_price">
+               <p><?= $i->product_price; ?></p>
+            </div>
+            <div class="item_detail">
+                <p><?= $i->function_detail; ?></p>
+            </div>
+            <form action="InsertCart.php">
+                <input type="submit" value="カートに入れる">
+            </form>
+        </div>
+    </div>
+</div>
