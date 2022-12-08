@@ -31,11 +31,15 @@ $items2 = $search -> SearchPdcByLogs();
         <div>
             <label class="model-box">
                 <p2 class="text">最近発売の商品</p2>
-                <?php 
-                    foreach($items1 as $i){
-                        require 'Cardbox.html';
-                    }
-                ?>
+                <div class="container-fluid">
+                    <div class="row m-2">
+                        <?php 
+                            foreach($items1 as $i){
+                                require 'Cardbox.html';
+                            }
+                        ?>
+                    </div>
+                </div>
             </label>
         </div>
         <div>
