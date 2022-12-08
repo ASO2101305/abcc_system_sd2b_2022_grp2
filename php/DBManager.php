@@ -9,13 +9,13 @@
         public function checkLoginByMailAndPass($mail,$pass){
             $ret = [];
             $pdo = $this->dbConnect();
-            $sql = "SELECT * FROM Customer WHERE mail_address = ?";
+            $sql = "SELECT * FROM client WHERE mailaddress = ?";
             $ps = $pdo->prepare($sql);
             $ps->bindValue(1,$mail,PDO::PARAM_STR);
             $ps->execute();
             $userList = $ps->fetchAll();
             foreach($userList as $row){
-                if($pass == $row['customer_pass']){
+                if($pass == $row['client_password']){
                     $ret = $userList;
                 }
             }
