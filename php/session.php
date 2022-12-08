@@ -10,9 +10,9 @@
         $_SESSION['pass'] = $row['client_password'];
         $_SESSION['name'] = $row['client_name'];
 
-        header('Location: ProductList.html');
+        header('Location: ./ProductList.html');
     }
     if(count($userData)==0){
-        header('Location:login.html');
+        header('Location:./login.html');
     }
 ?>
