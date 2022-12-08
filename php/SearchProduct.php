@@ -1,26 +1,41 @@
 <?php
+    require_once "sessioncheck.php";
+    require_once "DBManager.php";
     class search_result{
-        public function search(){
-            require_once "sessioncheck.php";
-
-            $search_box = $_POST['?????']; //検索ボックスに入力された文字
-            $sql = "SELECT * FROM Product WHERE product_name LIKE '%$search_box%'";
-            $result = $mysqli -> query($sql);
-
-            if(!$result) {
-                echo $mysqli->error;
-                exit();
+        function SearchPdc_result($getpdcname){
+            $pdo = new DBManager;
+            $PDO = $pdo->dbConnect();
+            $sql = "SELECT * FROM Product AS p LEFT OUTER JOIN product_bunrui AS pb ON p.product_bunrui_id = pb.product_bunrui_id WHERE p.product_name LIKE ? OR pb.bunrui_name LIKE ? ORDER BY p.sale_date DESC";
+            $ps = $PDO->prepare($sql);
+            $ps->bindValue(1,"%".$getpdcname."%",PDO::PARAM_STR);
+            $ps->bindValue(2,"%".$getpdcname."%",PDO::PARAM_STR);
+            $ps->execute();
+            $results = $ps->fetchAll();
+    
+            $ArrayPdc = array();
+            foreach($results as $result){
+                $product = new Product();
+                $product->product_id = $result['product_id'];
+                $product->product_name = $result['product_name'];
+                $product->source = $result['source'];
+                // 全部代入する
+    
+                // リターンする配列に追加
+                $ArrayPdc[ ] = $product;
             }
-
-            //連想配列で取得
-            while($row = $result->fetch_array(MYSQLI_ASSOC)){
-                $rows[] = $row;
-            }
-
-            //結果セットを解放
-            $result->free();
-
-            return $rows[];
+            return $ArrayPdc;
         }
     }
+
+        class Product {
+            public $product_id;
+            public $product_bunrui_id;
+            public $product_name;
+            public $product_price;
+            public $function_detail;
+            public $size;
+            public $sale_date;
+            public $maker_id;
+            public $source;
+        }  
 ?>
