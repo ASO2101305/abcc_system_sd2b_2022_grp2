@@ -1,6 +1,6 @@
 <?php 
-    require_once "./php/sessioncheck.php";
-    require_once "./php/Order_History_DB.php";
+    require_once "php/sessioncheck.php";
+    require_once "php/Order_History_DB.php";
     $dbmng = new History();
     $items1 = $dbmng -> HistoryPdcByDate();
     $items2 = $dbmng -> HistoryPdcByLogs();
