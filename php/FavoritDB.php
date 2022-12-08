@@ -1,6 +1,5 @@
 <?php
 require_once 'DBManager.php';
-require_once 'list.php';
 class Favorit{
     public function InsertFavoritDB($getflag,$getclient,$getproduct){
         $dbmng = new DBManager;
