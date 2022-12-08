@@ -4,7 +4,6 @@
     $dbmng = new History();
     $items1 = $dbmng -> HistoryPdcByDate();
     $items2 = $dbmng -> HistoryPdcByLogs();
-?>
 
 ?>
 <!DOCTYPE html>
@@ -36,7 +35,7 @@
                 <p2 class="text">注文履歴</p2>
                 <?php 
                     foreach($items1 as $i){
-                        require 'Cardbox.html';
+                        require 'Cardbox(order).html';
                     }
                 ?>
             </label>
