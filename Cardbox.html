@@ -1,15 +1,28 @@
 <div class="card col-3 m-2" style="width:18rem;">
-    <img src="<?= $i->source; ?>" class="card-img-top">
+    <img src="<?= $i->source; ?>" class="card-img-top img-thumbnail mt-2" size=10 style="width:100%;">
     <div class="card-body">
-        <h5 class="item_name"><?= $i->product_name; ?></h5>
+        <div class="item_name">
+            <p>商品名</p>
+            <h5><?= $i->product_name; ?></h5>
+        </div>
+        <div class="item_bunrui">
+            <p>種類</p>
+            <p><?= $i->bunrui_name; ?></p>
+        </div>
+        <div class="item_price">
+            <p>値段</p>
+        <p>￥<?= $i->product_price; ?>（税込み）</p>
+        </div>
+        <div>
+            <input class="btn btn-primary btn-sm" id="btn_add_cart<?= ++$btn_cnt; ?>" type="button" value="カートに追加">
+            <script type="text/javascript" >
+                val_id = "btn_add_cart<?= $btn_cnt; ?>";
+                //alert(val_id);
+                // dataObject = {'method':'POST', 'item_id':{<?= $i->product_id; ?>}, 'user_id':{<?= $i->product_id; ?>}};
+                document.getElementById(val_id)
+                .addEventListener("click",{method:"POST", client_id:<?= $user->id ?>, product_id:<?= $i->product_id ?>, handleEvent:btn_add_cart_on_click},false);
+                // .addEventListener("click",{method:"POST", arg01:val_id, handleEvent:doExecPost},false);
+            </script>
+        </div>
     </div>
-    <div class="item_price">
-       <p><?= $i->product_price; ?></p>
-    </div>
-    <div class="item_detail">
-        <p><?= $i->function_detail; ?></p>
-    </div>
-    <form action="#">
-        <input type="submit" value="カートに入れる">
-    </form>
 </div>
