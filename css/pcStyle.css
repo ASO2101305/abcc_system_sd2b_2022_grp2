@@ -1,41 +1,6 @@
-.menu-href{
-    text-decoration: none;
-    color: black;
+body{
+    background-color: #DEDEDE;
 }
-
 li{
     list-style: none;
-    float: left;
-    font-size: 18px;
-}
-
-.header-menu {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 8px;
-    margin: 0;
-    background: lightblue;
-}
-.menu-item1 {
-    position: relative;
-    left:5px;
-} */
-
-.menu-item2 {
-    width: 100;
-}
-input.hoge {   
-    width: 100%;    
-    position: relative;
-    left: 50px;
-}
-
-.menu-item3 {
-    position: relative;
-    left:50px;
-}
-
-.menu-item4 {
-
 }

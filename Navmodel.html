@@ -1,0 +1,88 @@
+<style>
+    .nav-item {
+      display:flex;
+      align-items: center;
+      justify-content: flex-end;
+      width:200px;
+      height:60px;
+      text-decoration: none;
+    }
+    .nav-link{
+      font-size: 25px;
+    }
+    .nav-logout{
+      margin-right: 0;
+      margin-left: auto;
+      width: 30%;
+    }
+    li {
+      list-style: none;
+      float: left;
+    }
+    form{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .logo{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    ul{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+<div class="container-fluid" style="background-color: #516C9D; padding-left:0px; padding-right:0px;">
+  <div class="row" style="margin-left: 0; margin-right: 0;">
+      <a class="col-md-2 logo" href="ProductList.html"><img style="width: 250px;" src="./img/workbuddy-book.png"></a>
+      <form action="SearchResult.html" method="post" class="col-md-6">
+            <li><input class="form-control" size="12" style="width:600px;" type="text" placeholder="商品名を入力" name="pdcname"></li> 
+            <li><input class="form-control" type="submit" value="検索"></li> 
+      </form>     
+        <ul class="col-md-2 me-auto">
+          <p class="nav-login text-white center" style="margin-left: 40px;">
+              ログイン中<br>
+              <?php $username?>
+          </p>
+        </ul>
+        <ul class="col-md-2 me-auto">
+          <li>
+            <a class="nav-link" style="font-size: 32px; text-decoration: none; color:white;" href="Cart.html"><i class="bi bi-cart3"></i>：カート</a>
+          </li>
+        </ul>
+  </div>
+</div>
+<div class="container-fluid" style="padding-left: 0px; padding-right: 0px;">
+  <div class="row" style="margin-left: 0; margin-right: 0;">
+    <nav class="navbar navbar-expand-sm" style="background-color: #7B9AD0" aria-label="Third navbar example">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+        <div class="collapse navbar-collapse" id="navbarsExample03">
+          <ul class="row me-auto mb-2 mb-sm-0">
+            <li class="col-md-3 nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none; color:black;">分類一覧</a>
+              <ul class="dropdown-menu" aria-labelledby="dropdown03">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li>
+            <li class="col-md-3 nav-item">
+              <a class="nav-link" href="Favorit.html" style="text-decoration: none; color:black;">お気に入りリスト</a>
+            </li>
+            <li class="col-md-3 nav-item">
+              <a class="nav-link" href="OrderHistory.html" style="text-decoration: none; color:black;">注文履歴</a>
+            </li>
+            <li class="col-md-3 nav-item">
+              <a class="nav-link" id="nav-logout" href="Logout.html" style="text-decoration: none; color:black;">ログアウト</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+

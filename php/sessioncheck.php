@@ -2,6 +2,6 @@
     session_start();
 
     if(isset($_SESSION['mailaddress'])==false){
-        header('Location: login.php');
+        header('Location: login.html');
     }
 ?>

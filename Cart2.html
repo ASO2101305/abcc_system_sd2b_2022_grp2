@@ -1,14 +1,3 @@
-<?php 
-    require_once "sessioncheck.php";
-    include 'Cart.php';
-    require_once 'DBManager.php';
-    $dbmng = new DBManager();
-    $dbmng->InsertHistory($_SESSION['id'],$id,$maker_id,date("Y/m/d"),$count);
-
-    $goukei = 0;
-    unset($_SESSION['products']);
-
-?>
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -23,13 +12,25 @@
 
     </head>
     <body>
-        <div>
-            <li class="menu-item1">
-                <a href=./ProductList.html><p>Workbuddy</p></a>
-            </li>
-            <h1>購入が確定しました</h1>
-            <p>またのご利用をお待ちしております</p>
-            <a href=./ProductList.html>トップページに戻る</a>
-        </div>
+      <?php 
+      require_once "php/sessioncheck.php";
+      $gokei = 0;
+    
+    	// $_SESSION["cart"] をループし、カートの商品を表示する。
+	    if( isset ( $_SESSION["products"] ) ){
+		      foreach( $_SESSION["products"] as $cart ){
+            $gokei += $cart["product_price"]
+      ?>
+                <tr>
+                  <td class="tc1"><img src="img/thumb2/<?php print( $cart['source'] ); ?>"></td>
+                  <td class="tc2"><?php print( $cart["product_name"] ); ?>
+                  (<?php print( $cart["num"] ); ?>個)</td>
+                  <td class="tc3">&yen;<?php print( $cart["product_price"] ); ?></td>
+                </tr>
+                <?php
+		                  }
+	                }
+                ?>
+                <div class="gokei"><?= $gokei; ?></div>
     </body>
 </html>
