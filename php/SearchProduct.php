@@ -17,6 +17,7 @@
                 $product = new Product();
                 $product->product_id = $result['product_id'];
                 $product->product_name = $result['product_name'];
+                $product->product_price = $result['product_price'];
                 $product->source = $result['source'];
                 // 全部代入する
     
@@ -26,16 +27,4 @@
             return $ArrayPdc;
         }
     }
-
-        class Product {
-            public $product_id;
-            public $product_bunrui_id;
-            public $product_name;
-            public $product_price;
-            public $function_detail;
-            public $size;
-            public $sale_date;
-            public $maker_id;
-            public $source;
-        }  
 ?>
