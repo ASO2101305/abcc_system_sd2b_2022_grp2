@@ -1,10 +1,11 @@
 <?php
 require_once 'DBManager.php';
-class search{
-    function SearchPdcByDate(){
+require_once 'Tbl_Product.php';
+class SearchPdc{
+    public static function SearchPdcByDate(){
         $pdo = new DBManager;
         $PDO = $pdo->dbConnect();
-        $sql = "SELECT * FROM Product ORDER BY sale_date DESC";
+        $sql = "SELECT p.product_id,p.product_name,p.product_price,pb.bunrui_name,p.source FROM Product AS p RIGHT OUTER JOIN Product_bunrui AS pb ON p.product_bunrui_id = pb.product_bunrui_id ORDER BY p.sale_date DESC";
         $ps = $PDO->prepare($sql);
         $ps->execute();
         $results = $ps->fetchAll();
@@ -14,7 +15,8 @@ class search{
             $product = new Product();
             $product->product_id = $result['product_id'];
             $product->product_name = $result['product_name'];
-
+            $product->product_price = $result['product_price'];
+            $product->product_bunrui = $result['bunrui_name'];
             $product->source = $result['source'];
             // 全部代入する
 
@@ -24,7 +26,7 @@ class search{
         return $ArrayPdc;
     }
     
-    function SearchPdcByLogs(){
+    public static function SearchPdcByLogs(){
         $pdo = new DBManager;
         $PDO = $pdo->dbConnect();
         $sql = "SELECT * FROM order_log ORDER BY order_date DESC";
@@ -33,16 +35,27 @@ class search{
         $Arraylogs = $ps->fetchAll();
         return $Arraylogs;
     }
-}
 
-class Product {
-    public $product_id;
-    public $product_bunrui_id;
-    public $product_name;
-    public $product_price;
-    public $function_detail;
-    public $size;
-    public $sale_date;
-    public $maker_id;
-    public $source;
-}  
+    public static function selectAll($pdo){
+        //実行したいSQLを準備する
+        $PDO = new DBManager();
+        $pdo = $PDO -> dbConnect();
+        $sql = 'SELECT * FROM product';
+        $stmt = $pdo->prepare($sql);
+        //SQLを実行
+        $stmt->execute();
+        //データベースの値を取得
+        $results = $stmt->fetchall();
+        $items = array();
+        foreach($results as $result){
+            $item = new Product();
+            $item->product_id = $result['product_id'];
+            $item->product_name = $result['product_name'];
+            $item->product_price = $result['product_price'];
+            $item->source = $result['source'];
+            $items[] = $item; // リストに追加
+        }
+        return $items;
+    }
+}
+?>
