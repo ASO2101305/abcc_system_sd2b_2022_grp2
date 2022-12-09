@@ -1,8 +1,16 @@
 <?php
 require_once 'php/Searchproduct.php';
+require_once 'php/SearchPdc.php';
 require_once 'php/sessioncheck.php';
-$pdo = new search_result();
-$items = $pdo -> SearchPdc_result($_POST['pdcname']);
+$PDO = new DBManager();
+$pdo = $PDO -> dbConnect();
+$search = new search_result();
+$search2 = new SearchPdc();
+$items1 = $search -> SearchPdc_result($_POST['pdcname']);
+require_once './php/Tbl_Cart.php';
+$items = $search2 -> selectAll();
+$user = $_SESSION['id'];
+$username = $_SESSION['name'];
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -26,7 +34,7 @@ $items = $pdo -> SearchPdc_result($_POST['pdcname']);
                 <div class="container-fluid">
                     <div class="row m-2">
                         <?php 
-                            foreach($items as $i){
+                            foreach($items1 as $i){
                                 require 'Cardbox.html';
                             }
                         ?>
