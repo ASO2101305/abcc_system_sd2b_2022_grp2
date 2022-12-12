@@ -9,7 +9,6 @@
         $_SESSION['mailaddress'] = $row['mailaddress'];
         $_SESSION['pass'] = $row['client_password'];
         $_SESSION['name'] = $row['client_name'];
-
         header('Location: ../ProductList.html');
     }
     if(count($userData)==0){
