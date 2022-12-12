@@ -1,8 +1,9 @@
 <?php 
     class DBManager{
         public static function dbConnect(){
+            
             $pdo = new PDO('mysql:lost=localhost;dbname=workbuddydb;charset=utf8','wbdb','abccsd2');
-            //$pdo = new PDO('mysql:host=mysql209.phy.lolipop.lan;dbname=LAA1418782-kaihatsu;charset=utf8','LAA1418782','Pass0629');
+            //$pdo = new PDO('mysql:host=mysql209.phy.lolipop.lan;dbname=LAA1417875-wbdb;charset=utf8','LAA1417875','Pass0114');
             return $pdo;
         }
         

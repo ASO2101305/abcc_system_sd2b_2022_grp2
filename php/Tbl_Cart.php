@@ -8,5 +8,6 @@ class Tbl_Cart{
     public $product_name;
     public $product_price;
     public $source;
+    public $maker_id;
 }
 ?>

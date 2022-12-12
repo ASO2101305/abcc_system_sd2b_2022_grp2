@@ -15,7 +15,7 @@ if(typeof POST_JS != "undefined"){
  * @param element
  */
 
-function execPostAsync(action, dataObject, element){
+function execPostAsync(action, dataObject, arg_element){
     // (1)XMLHttpRequestオブジェクトを作成
     let xmlHttpRequest = new XMLHttpRequest();
     // (2)HTTPのPOSTメソッドとアクセスする場所を指定
@@ -25,10 +25,21 @@ function execPostAsync(action, dataObject, element){
 	xmlHttpRequest.onload = function () {
 		//ここに完了時の処理を書く
 		//サーバーサイドからの返り値はthis.responseTextとかでもらう
-        // alert(this.response+":レス");
-        if(element!=null){
-            element.value = this.response;
+        // alert(this.response+" :レス");
+        // alert(arg_element.value+" :element");
+        if(arg_element!=null){
+            arg_element.value = this.response;
         }
 	}
+    let paramString = '';
+    if( dataObject != undefined ){
+        let lastkey = Object.keys(dataObject).pop();
+        for(let paramName in dataObject){
+            paramString = paramString.concat(paramName);
+            paramString = paramString.concat("=");
+            paramString = paramString.concat(dataObject[paramName]+(lastkey !== paramName ? '&' : '' ));
+        }
+
+    }
     xmlHttpRequest.send(paramString);
 }

@@ -1,13 +1,23 @@
 <?php 
-    require_once "sessioncheck.php";
-    include 'Cart.php';
-    require_once 'DBManager.php';
-    $dbmng = new DBManager();
-    $dbmng->InsertHistory($_SESSION['id'],$id,$maker_id,date("Y/m/d"),$count);
-
-    $goukei = 0;
-    unset($_SESSION['products']);
-
+    require_once "php/sessioncheck.php";
+    require_once 'php/DBManager.php';
+    require_once 'php/Cart.php';
+    $pdo = new DBManager();
+    $pdo = $pdo->dbConnect();
+    $cart = new cart();
+    $cart = $cart->selectCart2();
+    $today = date("Ymd");
+    foreach($cart as $i){
+        $sql="INSERT INTO order_log(client_id,product_id,maker_id,order_date) VALUE(?,?,?,$today)";
+        $ps = $pdo-> prepare($sql);
+        $ps ->bindValue(1,$i->client_id,PDO::PARAM_INT);
+        $ps ->bindValue(2,$i->product_id,PDO::PARAM_INT);
+        $ps ->bindValue(3,$i->maker_id,PDO::PARAM_INT);
+        $ps->execute();
+    }
+    $sql="DELETE FROM cart";
+    $ps = $pdo->prepare($sql);
+    $ps->execute();
 ?>
 
 <!DOCTYPE html>
@@ -33,3 +43,6 @@
         </div>
     </body>
 </html>
+
+
+        

@@ -1,4 +1,13 @@
 
+<?php 
+require_once 'php/DBManager.php';
+$pdo = new DBManager();
+$pdo = $pdo -> dbConnect();
+require_once "php/sessioncheck.php";
+require_once 'php/Cart.php';
+$cart = new cart();
+$item = $cart->selectCart();
+?>
 <!DOCTYPE html>
 <html lang="ja">
     <head>
@@ -12,25 +21,42 @@
 
     </head>
     <body>
-        <?php 
-        require_once "php/sessioncheck.php";
-        $gokei = 0;
-    
-    	// $_SESSION["cart"] をループし、カートの商品を表示する。
-	    if( isset ( $_SESSION["products"] ) ){
-		    foreach( $_SESSION["products"] as $cart ){
-            $gokei += $cart["product_price"]
-        ?>
-            <tr>
-                <td class="tc1"><img src="img/thumb2/<?php print( $cart['source'] ); ?>"></td>
-                <td class="tc2"><?php print( $cart["product_name"] ); ?>
-                (<?php print( $cart["num"] ); ?>個)</td>
-                <td class="tc3">&yen;<?php print( $cart["product_price"] ); ?></td>
-            </tr>
+        <div class="container-fluid" style="padding-left: 0px; padding-right: 0px;">
+            <div>
+                <?php
+                    require 'Navmodel.html';
+                ?>
+            </div>
+        <div class="container-fluid">
+            <div class="row">
+                <?php 
+                $gokei = 0;
+                foreach($item as $i){
+                    $gokei += $i->product_price;
+                ?>
+                    <div class="card col-3 m-2" style="width:18rem;">
+                        <img src="<?= $i->source; ?>" class="card-img-top img-thumbnail mt-2" size=10 style="width:100%;">
+                        <div class="card-body">
+                            <div class="item_name">
+                                <p>商品名</p>
+                                <h5><?= $i->product_name; ?></h5>
+                            </div>
+                            <div class="item_price">
+                                <p>値段</p>
+                            <p>￥<?= $i->product_price; ?>（税込み）</p>
+                            </div>
+                        </div>
+                    </div>
         <?php
-		    }
-	    }
+                }
         ?>
-                <div class="gokei"><?= $gokei; ?></div>
+            </div>
+        </div>
+        <div class="gokei">
+            <form action="OrderDef.html">
+                <h1>合計<?= $gokei; ?>円（税込み）</h1>
+                <h1><input type="submit" value="注文確定" style="color: red;"></h1>
+            </form>
+        </div>
     </body>
 </html>

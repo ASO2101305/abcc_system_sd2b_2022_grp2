@@ -1,9 +1,13 @@
 <div class="card col-3 m-2" style="width:18rem;">
-    <img src="<?= $i->source; ?>" class="card-img-top">
+    <img src="<?= $i->source; ?>" class="card-img-top img-thumbnail mt-2" size=10 style="width:100%;">
     <div class="card-body">
-        <h5 class="item_name"><?= $i->product_name; ?></h5>
-    </div>
-    <div class="item_price">
-       <p><?= $i->product_price; ?></p>
+        <div class="item_name">
+            <p>商品名</p>
+            <h5><?= $i->product_name; ?></h5>
+        </div>
+        <div class="item_price">
+            <p>値段</p>
+        <p>￥<?= $i->product_price; ?>（税込み）</p>
+        </div>
     </div>
 </div>

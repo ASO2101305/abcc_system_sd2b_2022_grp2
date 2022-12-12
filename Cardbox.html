@@ -5,10 +5,6 @@
             <p>商品名</p>
             <h5><?= $i->product_name; ?></h5>
         </div>
-        <div class="item_bunrui">
-            <p>種類</p>
-            <p><?= $i->bunrui_name; ?></p>
-        </div>
         <div class="item_price">
             <p>値段</p>
         <p>￥<?= $i->product_price; ?>（税込み）</p>
@@ -20,7 +16,7 @@
                 //alert(val_id);
                 // dataObject = {'method':'POST', 'item_id':{<?= $i->product_id; ?>}, 'user_id':{<?= $i->product_id; ?>}};
                 document.getElementById(val_id)
-                .addEventListener("click",{method:"POST", client_id:<?= $user->id ?>, product_id:<?= $i->product_id ?>, handleEvent:btn_add_cart_on_click},false);
+                .addEventListener("click",{method:"POST", client_id:'<?= $user ?>', product_id:'<?= $i->product_id ?>', handleEvent:btn_add_cart_on_click},false);
                 // .addEventListener("click",{method:"POST", arg01:val_id, handleEvent:doExecPost},false);
             </script>
         </div>
