@@ -1,26 +1,21 @@
 <?php 
     class DBManager{
-        public static function dbConnect(){
+        public function dbConnect(){
             
-            $pdo = new PDO('mysql:lost=localhost;dbname=workbuddydb;charset=utf8','wbdb','abccsd2');
-            //$pdo = new PDO('mysql:host=mysql209.phy.lolipop.lan;dbname=LAA1417875-wbdb;charset=utf8','LAA1417875','Pass0114');
+            $pdo = new PDO('mysql:host=mysql209.phy.lolipop.lan;dbname=LAA1417875-wbdb;charset=utf8','LAA1417875','Pass0114');
             return $pdo;
         }
         
         public function checkLoginByMailAndPass($mail,$pass){
             $ret = [];
             $pdo = $this->dbConnect();
-            $sql = "SELECT * FROM client WHERE mailaddress = ?";
+            $sql = "SELECT * FROM Client WHERE mailaddress = ? AND client_password = ?";
             $ps = $pdo->prepare($sql);
             $ps->bindValue(1,$mail,PDO::PARAM_STR);
+            $ps->bindValue(2,$pass,PDO::PARAM_STR);
             $ps->execute();
             $userList = $ps->fetchAll();
-            foreach($userList as $row){
-                if($pass == $row['client_password']){
-                    $ret = $userList;
-                }
-            }
-            return $ret;
+	     return $userList;
         }
 
         public function PdcList($pdo){
@@ -31,7 +26,7 @@
 
         //注文履歴入れるやつ
         public function InsertHistory($client_id,$product_id,$maker_id,$num){
-            $pdo = this->dbConnect();
+            $pdo = $this->dbConnect();
             $sql = "INSERT INTO order_log(order_id,client_id,product_id,maker_id,order_date,order_num)
             VALUES(?,?,?,?,?,?)";
             $ps = $pdo->prepare($sql);
@@ -47,12 +42,11 @@
         }
 
         public function DBCount(){
-            $pdo = this->dbConnect();
+            $pdo = $this->dbConnect();
             $sql = "SELECT * FROM order_log";
             $sth = $pdo -> query($sql);
             $count = $sth -> rowCount();
             return $count;
         }
-
     }
 ?>
