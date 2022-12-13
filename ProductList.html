@@ -1,15 +1,14 @@
 <?php
-require_once 'php/SearchPdc.php';
-require_once 'php/sessioncheck.php';
-$PDO = new DBManager();
-$pdo = $PDO -> dbConnect();
-$search = new SearchPdc();
-$items1 = $search -> SearchPdcByDate();
-$items2 = $search -> SearchPdcByLogs();
-require_once './php/Tbl_Cart.php';
-$items = $search -> selectAll($pdo);
-$user = $_SESSION['id'];
-$username = $_SESSION['name'];
+    require_once 'php/SearchPdc.php';
+    require_once 'php/sessioncheck.php';
+    $PDO = new DBManager();
+    $pdo = $PDO -> dbConnect();
+    $search = new SearchPdc();
+    $items1 = $search -> SearchPdcByDate();
+    require_once './php/Tbl_Cart.php';
+    $items = $search -> selectAll($pdo);
+    $user = $_SESSION['id'];
+    $username = $_SESSION['name'];
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -28,29 +27,29 @@ $username = $_SESSION['name'];
     <body>
         <script type="text/javascript">
             function btn_add_cart_on_click(e){
-            let targetNode = e.currentTarget; // clickした要素を取得(今は使わない)
+                let targetNode = e.currentTarget; // clickした要素を取得(今は使わない)
 
-            let client_id = this.client_id;
-            let product_id = this.product_id;
+                let client_id = this.client_id;
+                let product_id = this.product_id;
 
-            let action =  './php/cart.php';
-            // サーバへポスト送信&カート表示も更新する
-            let divCart = document.getElementById('divCartBtn3');
-            let dataObject = { 'mode':'POST_INSERT_CART','client_id':client_id, 'product_id':product_id, 'divCart':divCart };
-            // alert('client_id='+client_id+" "+'product_id='+product_id);
+                let action =  './php/cart.php';
+                // サーバへポスト送信&カート表示も更新する
+                let divCart = document.getElementById('divCartBtn3');
+                let dataObject = { 'mode':'POST_INSERT_CART','client_id':client_id, 'product_id':product_id, 'divCart':divCart };
+                // alert('client_id='+client_id+" "+'product_id='+product_id);
 
-            // alert("divCart=「"+divCart.innerHTML+"」");
-            // alert("action"+action);
-            let rt = execPostAsync(action, dataObject, divCart);
-            // 以下のループで使う変数(変更禁止)
-            let val_id=-1;
+                // alert("divCart=「"+divCart.innerHTML+"」");
+                // alert("action"+action);
+                let rt = execPostAsync(action, dataObject, divCart);
+                // 以下のループで使う変数(変更禁止)
+                let val_id=-1;
             }
         </script>
 
         <div class="container-fluid" style="padding-left: 0px; padding-right: 0px;">
             <div>
                 <?php
-                    require 'Navmodel.html';
+                     require 'Navmodel.html';
                 ?>
             </div>
             <div>
@@ -81,4 +80,3 @@ $username = $_SESSION['name'];
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <script type="text/javascript" src="./js/post.js"></script>
     </body>
-</html>
