@@ -5,7 +5,7 @@ class SearchPdc{
     public function SearchPdcByDate(){
         $dbm = new DBManager;
         $PDO = $dbm->dbConnect();
-        $sql = "SELECT p.product_id,p.product_name,p.product_price,pb.bunrui_name,p.source FROM Product AS p RIGHT OUTER JOIN Product_bunrui AS pb ON p.product_bunrui_id = pb.product_bunrui_id ORDER BY p.sale_date DESC";
+        $sql = "SELECT p.product_id,p.product_name,p.product_price,p.size,pb.bunrui_name,p.source FROM Product AS p RIGHT OUTER JOIN Product_bunrui AS pb ON p.product_bunrui_id = pb.product_bunrui_id ORDER BY p.sale_date DESC";
         $ps = $PDO->prepare($sql);
         $ps->execute();
         $results = $ps->fetchAll();
@@ -15,6 +15,7 @@ class SearchPdc{
             $product->product_id = $result['product_id'];
             $product->product_name = $result['product_name'];
             $product->product_price = $result['product_price'];
+            $product->product_size = $result['size'];
             $product->product_bunrui = $result['bunrui_name'];
             $product->source = $result['source'];
             // 全部代入する

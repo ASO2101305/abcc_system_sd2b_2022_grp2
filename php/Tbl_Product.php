@@ -5,7 +5,7 @@ class Product {
     public $product_name;
     public $product_price;
     public $function_detail;
-    public $size;
+    public $product_size;
     public $sale_date;
     public $maker_id;
     public $source;

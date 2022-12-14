@@ -4,7 +4,7 @@ class History{
     function HistoryPdcByDate(){
         $pdo = new DBManager;
         $PDO = $pdo->dbConnect();
-        $sql = "SELECT * FROM order_log AS o LEFT OUTER JOIN product AS p ON o.product_id = p.product_id ORDER BY order_date DESC";
+        $sql = "SELECT * FROM Order_log AS o LEFT OUTER JOIN Product AS p ON o.product_id = p.product_id ORDER BY order_date DESC";
         $ps = $PDO->prepare($sql);
         $ps->execute();
         $results = $ps->fetchAll();
@@ -28,7 +28,7 @@ class History{
     function HistoryPdcByLogs(){
         $pdo = new DBManager;
         $PDO = $pdo->dbConnect();
-        $sql = "SELECT * FROM order_log AS o LEFT OUTER JOIN product AS p ON o.product_id = p.product_id ORDER BY order_date DESC";
+        $sql = "SELECT * FROM Order_log AS o LEFT OUTER JOIN Product AS p ON o.product_id = p.product_id ORDER BY order_date DESC";
         $ps = $PDO->prepare($sql);
         $ps->execute();
         $Arraylogs = $ps->fetchAll();

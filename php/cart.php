@@ -36,8 +36,8 @@ class cart{
 
     public static function selectForClient($pdo,$client_id){
         $sql ="SELECT c.cart_id,c.product_id,c.client_id,p.product_name,p.product_price,p.source 
-        FROM (cart AS c LEFT OUTER JOIN client AS cl ON c.client_id = cl.client_id)
-         LEFT OUTER JOIN product AS p ON c.product_id = p.product_id WHERE c.client_id = ?";
+        FROM (Cart AS c LEFT OUTER JOIN Client AS cl ON c.client_id = cl.client_id)
+         LEFT OUTER JOIN Product AS p ON c.product_id = p.product_id WHERE c.client_id = ?";
         $stmt = $pdo->prepare($sql);
         $stmt->bindValue(1, $client_id);
         $stmt->execute();
@@ -57,7 +57,7 @@ class cart{
     }
     public static function insertItem($pdo, $client_id, $product_id){
         //実行したいSQLを準備する
-        $sql = "INSERT INTO cart (client_id, product_id) values( ? , ?)";
+        $sql = "INSERT INTO Cart (client_id, product_id) VALUE (?,?)";
         try{
             $stmt = $pdo->prepare($sql);
             $stmt->bindValue(1, $client_id);
@@ -74,7 +74,7 @@ class cart{
     }
     public static function deletetRecord($pdo, $cart_id){
         //実行したいSQLを準備する
-        $sql = "DELETE FROM cart WHERE cart_id = ?";
+        $sql = "DELETE FROM Cart WHERE cart_id = ?";
         try{
             $stmt = $pdo->prepare($sql);
             $stmt->bindValue(1, $id);
@@ -91,7 +91,7 @@ class cart{
     public static function selectCart(){
         $pdo = new DBManager();
         $pdo = $pdo->dbConnect();
-        $sql = "SELECT p.product_name,p.product_price,source FROM cart AS c LEFT OUTER JOIN product AS p ON p.product_id = c.product_id LEFT OUTER JOIN client AS cl ON c.client_id = cl.client_id";
+        $sql = "SELECT p.product_name,p.product_price,source FROM Cart AS c LEFT OUTER JOIN Product AS p ON p.product_id = c.product_id LEFT OUTER JOIN Client AS cl ON c.client_id = cl.client_id";
         $ps = $pdo->prepare($sql);
         $ps->execute();
        $results = $ps->fetchAll();
@@ -109,9 +109,9 @@ class cart{
     public static function selectCart2(){
         $pdo = new DBManager();
         $pdo = $pdo->dbConnect();
-        $sql = "SELECT c.client_id,p.product_id,m.maker_id FROM ((cart AS c LEFT OUTER JOIN product AS p 
-       ON c.product_id = p.product_id) LEFT OUTER JOIN maker AS m ON p.maker_id = m.maker_id) LEFT OUTER JOIN 
-       client AS cl ON c.client_id = cl.client_id";
+        $sql = "SELECT c.client_id,p.product_id,m.maker_id FROM ((Cart AS c LEFT OUTER JOIN Product AS p 
+       ON c.product_id = p.product_id) LEFT OUTER JOIN Maker AS m ON p.maker_id = m.maker_id) LEFT OUTER JOIN 
+       Client AS cl ON c.client_id = cl.client_id";
         $ps = $pdo->prepare($sql);
         $ps->execute();
        $results = $ps->fetchAll();

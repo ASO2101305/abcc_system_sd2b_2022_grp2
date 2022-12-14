@@ -38,12 +38,12 @@
 <div class="container-fluid" style="background-color: #516C9D; padding-left:0px; padding-right:0px;">
   <div class="row" style="margin-left: 0; margin-right: 0;">
       <a class="col-md-2 logo" href="ProductList.html"><img style="width: 250px;" src="./img/workbuddy-book.png"></a>
-      <form action="SearchResult.html" method="post" class="col-md-6">
+      <form action="SearchResult.html" method="post" class="col-md-7 col-sm-12 text-center">
             <li><input class="form-control" size="12" style="width:600px;" type="text" placeholder="商品名を入力" name="pdcname"></li> 
             <li><input class="form-control" type="submit" value="検索"></li> 
       </form>     
-        <ul class="col-md-2 me-auto">
-          <p class="nav-login text-white center" style="margin-left: 40px;">
+        <ul class="col-md-1 me-auto">
+          <p class="nav-login text-white center" style="font-size: 10px; margin-left: 40px;">
               ログイン中<br>
               <?php $username?>
           </p>
@@ -64,18 +64,15 @@
       </button>
         <div class="collapse navbar-collapse" id="navbarsExample03">
           <ul class="row me-auto mb-2 mb-sm-0">
-            <li class="col-md-3 nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none; color:black;">分類一覧</a>
+            <li class="col-md-6 nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none; color:black;">一覧</a>
               <ul class="dropdown-menu" aria-labelledby="dropdown03">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                <li><a class="dropdown-item" href="ProductList.html">一覧画面</a></li>
+                <li><a class="dropdown-item" href="OrderHistory.html">注文履歴</a></li>
+                <li><a class="dropdown-item" href="Cart.html">カート</a></li>
               </ul>
             </li>
-            <li class="col-md-3 nav-item">
-              <a class="nav-link" href="OrderHistory.html" style="text-decoration: none; color:black;">注文履歴</a>
-            </li>
-            <li class="col-md-3 nav-item">
+            <li class="col-md-6 nav-item text-center">
               <a class="nav-link" id="nav-logout" href="Logout.html" style="text-decoration: none; color:black;">ログアウト</a>
             </li>
           </ul>

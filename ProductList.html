@@ -32,7 +32,7 @@
                 let client_id = this.client_id;
                 let product_id = this.product_id;
 
-                let action =  './php/cart.php';
+                let action =  './php/Cart.php';
                 // サーバへポスト送信&カート表示も更新する
                 let divCart = document.getElementById('divCartBtn3');
                 let dataObject = { 'mode':'POST_INSERT_CART','client_id':client_id, 'product_id':product_id, 'divCart':divCart };
@@ -57,7 +57,7 @@
             </div>
             <div>
                 <label class="model-box">
-                    <p2 class="text">最近発売の商品</p2>
+                    <h1 class="text-center">最近発売の商品</h1>
                     <div class="container-fluid">
                         <div class="row m-2 ">
                             <?php 

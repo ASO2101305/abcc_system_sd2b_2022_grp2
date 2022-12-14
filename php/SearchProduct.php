@@ -5,7 +5,7 @@
         function SearchPdc_result($getpdcname){
             $pdo = new DBManager;
             $PDO = $pdo->dbConnect();
-            $sql = "SELECT * FROM Product AS p LEFT OUTER JOIN product_bunrui AS pb ON p.product_bunrui_id = pb.product_bunrui_id WHERE p.product_name LIKE ? OR pb.bunrui_name LIKE ? ORDER BY p.sale_date DESC";
+            $sql = "SELECT * FROM Product AS p LEFT OUTER JOIN Product_bunrui AS pb ON p.product_bunrui_id = pb.product_bunrui_id WHERE p.product_name LIKE ? OR pb.bunrui_name LIKE ? ORDER BY p.sale_date DESC";
             $ps = $PDO->prepare($sql);
             $ps->bindValue(1,"%".$getpdcname."%",PDO::PARAM_STR);
             $ps->bindValue(2,"%".$getpdcname."%",PDO::PARAM_STR);
