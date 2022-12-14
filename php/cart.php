@@ -101,6 +101,7 @@ class cart{
            $product = new Product();
            $product->product_name = $result['product_name'];
            $product->product_price = $result['product_price'];
+           $product->product_size = $result['size'];
            $product->source = $result['source'];
            $ArrayPdc[] = $product;
        }
